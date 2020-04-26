@@ -54,7 +54,9 @@ module.exports = {
    */
   axios: {
     baseURL:
-      process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api' : ''
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/api'
+        : 'https://dahisc-chatroom.herokuapp.com/api'
   },
   /*
    ** Build configuration
