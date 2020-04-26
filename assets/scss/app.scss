@@ -1,0 +1,10 @@
+// Your variable overrides
+$theme-colors: (
+  color1: #5081ad,
+  color2: #94b2d3,
+  color3: #c7daf2,
+  color4: #e9f4f6,
+  color5: #ffffff
+);
+
+@import '@/node_modules/bootstrap/scss/bootstrap';
