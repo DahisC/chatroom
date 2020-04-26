@@ -4,7 +4,9 @@ const { Nuxt, Builder } = require('nuxt')
 const app = express()
 // socket.io
 const server = require('http').createServer(app)
-var io = require('socket.io')(server)
+const io = require('socket.io')(server)
+const bodyParser = require('body-parser')
+const apiRoutes = require('./api/index')(io)
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -22,6 +24,10 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
+
+  // API 路徑
+  app.use(bodyParser.json())
+  app.use('/api', apiRoutes)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
