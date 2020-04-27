@@ -1,14 +1,20 @@
 <template>
-  <div>
+  <BubbleBackground>
     <nuxt />
-  </div>
+  </BubbleBackground>
 </template>
 
-<style>
-body {
-  background-color: #c7daf2;
-}
+<script>
+import BubbleBackground from '~/components/BubbleBackground'
 
+export default {
+  components: {
+    BubbleBackground
+  }
+}
+</script>
+
+<style>
 ::-webkit-scrollbar {
   width: 10px;
 }

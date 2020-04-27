@@ -13,7 +13,6 @@ export default {
         console.log(this.$el.clientHeight)
         console.log(this.$el.scrollTop)
       }
-      console.log('new message')
       return this.$store.state.chatMessage.chatMessages
     }
   }
@@ -26,11 +25,11 @@ div#chatroom {
   flex-direction: column;
   overflow-y: auto;
   height: 100%;
-  padding: 0 10vh;
+  padding: 0 5vh;
 }
 
 div.chat_message {
-  width: max-content;
+  width: fit-content;
   background-color: white;
   padding: 10px 10px;
   border-radius: 5px;

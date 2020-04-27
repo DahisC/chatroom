@@ -1,17 +1,23 @@
 <template>
   <b-col id="toolbar">
-    <b-icon icon="image-fill" scale="0.75"></b-icon>
-    <b-icon icon="image-fill" scale="0.75"></b-icon>
+    <b-icon icon="image" scale="0.75"></b-icon>
+    <b-icon icon="folder-plus" scale="0.75"></b-icon>
   </b-col>
 </template>
 
 <script>
-import { BIcon, BIconImageFill, BIconFileEarmarkPlus } from 'bootstrap-vue'
+import {
+  BIcon,
+  BIconImage,
+  BIconFileEarmarkPlus,
+  BIconFolderPlus
+} from 'bootstrap-vue'
 export default {
   components: {
     BIcon,
-    BIconImageFill,
-    BIconFileEarmarkPlus
+    BIconImage,
+    BIconFileEarmarkPlus,
+    BIconFolderPlus
   }
 }
 </script>

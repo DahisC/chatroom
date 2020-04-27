@@ -1,7 +1,11 @@
 <template>
   <b-col>
     <div :style="{ position: 'relative' }">
-      <b-form-input v-model="inputMessage" @keyup.enter="createMessage" />
+      <b-form-input
+        v-model="inputMessage"
+        @keyup.enter="createMessage"
+        placeholder="說點什麼吧？"
+      />
       <span
         :style="{
           position: 'absolute',
