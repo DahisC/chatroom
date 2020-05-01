@@ -96,16 +96,12 @@ export default {
 
       setTimeout(() => {
         console.log('---BEFORE DELETE---', ss)
-        const cssRuleIndex = Array.from(
-          document.styleSheets[6].cssRules
-        ).findIndex(
+        const cssRuleIndex = Array.from(ss.cssRules).findIndex(
           t =>
             t instanceof CSSStyleRule &&
             t.selectorText.includes(`floating${chosenNumber}`)
         )
-        const keyframesRuleIndex = Array.from(
-          document.styleSheets[6].cssRules
-        ).findIndex(
+        const keyframesRuleIndex = Array.from(ss.cssRules).findIndex(
           t =>
             t instanceof CSSKeyframesRule &&
             t.name.includes(`floating${chosenNumber}`)
