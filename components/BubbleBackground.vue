@@ -27,7 +27,8 @@ export default {
   methods: {
     blowABubble() {
       const vm = this
-      const ss = document.styleSheets[6]
+      const isDev = process.env.NODE_ENV === 'Development'
+      const ss = document.styleSheets[isDev ? 6 : 0]
       if (vm.bubbles.length >= vm.bubbleMax) return
 
       /**
