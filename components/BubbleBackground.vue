@@ -83,8 +83,8 @@ export default {
 
       vm.bubbles.push(chosenNumber)
 
-      document.styleSheets[6].insertRule(makeAbubble(chosenNumber))
-      document.styleSheets[6].addRule(
+      ss.insertRule(makeAbubble(chosenNumber))
+      ss.addRule(
         `#floating${chosenNumber}`,
         `
         animation-duration: ${duration}s;
@@ -111,8 +111,8 @@ export default {
             t.name.includes(`floating${chosenNumber}`)
         )
 
-        document.styleSheets[6].deleteRule(cssRuleIndex)
-        document.styleSheets[6].deleteRule(keyframesRuleIndex)
+        ss.deleteRule(cssRuleIndex)
+        ss.deleteRule(keyframesRuleIndex)
 
         console.log('---AFTER DELETE---', ss)
 
