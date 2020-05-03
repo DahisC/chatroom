@@ -33,7 +33,7 @@ async function start() {
   app.use(nuxt.render)
 
   io.on('connection', socket => {
-    console.log('a user connected')
+    console.log('a user connected2')
   })
 
   // Listen the server

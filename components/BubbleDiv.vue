@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="bubble_div">
     <slot></slot>
   </div>
 </template>
 
 <style scoped>
-div {
-  width: 75%;
+div.bubble_div {
+  width: 90%;
   height: 75%;
   background-image: url('../assets/images/bubble-bg.png');
   background-size: contain;

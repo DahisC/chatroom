@@ -66,20 +66,12 @@ export default {
         `
       }
 
-      //   const notChosenNumbers = new Array(10)
-      //     .fill(0)
-      //     .map((x, i) => i + 1)
-      //     .filter(x => !new Set(vm.bubbles).has(x))
-
       const notChosenNumbers = Array.from(new Array(vm.bubbleMax))
         .map((x, i) => i + 1)
         .filter(x => !new Set(vm.bubbles).has(x))
-      console.log(notChosenNumbers)
 
       const chosenNumber =
         notChosenNumbers[range(0, notChosenNumbers.length - 1)]
-
-      console.log(chosenNumber)
 
       vm.bubbles.push(chosenNumber)
 
@@ -95,7 +87,6 @@ export default {
       )
 
       setTimeout(() => {
-        console.log('---BEFORE DELETE---', ss)
         const cssRuleIndex = Array.from(ss.cssRules).findIndex(
           t =>
             t instanceof CSSStyleRule &&
@@ -109,8 +100,6 @@ export default {
 
         ss.deleteRule(cssRuleIndex)
         ss.deleteRule(keyframesRuleIndex)
-
-        console.log('---AFTER DELETE---', ss)
 
         vm.bubbles = vm.bubbles.filter(t => t !== chosenNumber)
       }, duration * 1000)
@@ -129,8 +118,6 @@ div.bubble {
   position: absolute;
   /* width: 50px;
   height: 50px; */
-  left: 0;
-  bottom: 0px;
 
   border-radius: 50%;
   z-index: 999;
@@ -142,6 +129,7 @@ div.bubble {
   /* animation-fill-mode: forwards; */
   /* background-image: url('../assets/images/bubble-border.png');
   background-repeat: no-repeat; */
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(111, 160, 224, 0.25);
+  pointer-events: none;
 }
 </style>
