@@ -6,7 +6,7 @@ const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 const bodyParser = require('body-parser')
-const apiRoutes = require('./api/index')(io)
+const apiRoutes = require('./api/index').routes(io)
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -32,9 +32,9 @@ async function start() {
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
-  io.on('connection', socket => {
-    console.log('a user connected2')
-  })
+  // io.on('connection', socket => {
+  //   console.log('a user connected2')
+  // })
 
   // Listen the server
   // app.listen(port, host)

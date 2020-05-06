@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-let chatMessages = []
+let messages = []
 
 // router.route('/test', (req, res) => {
 //   console.log('成功ㄌ')
@@ -17,7 +17,7 @@ module.exports = io => {
     })
     .post((req, res) => {
       const message = req.body.message
-      chatMessages.push(message)
+      messages.push(message)
       res.status(200).end()
       io.emit('pushMessage', { message })
     })

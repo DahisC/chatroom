@@ -1,11 +1,7 @@
 <template>
   <b-col>
     <div :style="{ position: 'relative' }">
-      <b-form-input
-        v-model="inputMessage"
-        @keyup.enter="createMessage"
-        placeholder="說點什麼吧？"
-      />
+      <b-form-input v-model="inputMessage" @keyup.enter="createMessage" placeholder="說點什麼吧？" />
       <span
         :style="{
           position: 'absolute',
@@ -38,11 +34,17 @@ export default {
   },
   methods: {
     createMessage() {
-      this.$store.dispatch('chatMessage/createMessage', {
-        message: this.inputMessage
+      this.$store.dispatch('messages/createMessage', {
+        type: 'CHAT',
+        text: this.inputMessage
       })
       this.inputMessage = ''
     }
   }
+  // computed: {
+  //   trimmedInputMessage() {
+  //     return inputMessage.trim()
+  //   }
+  // }
 }
 </script>

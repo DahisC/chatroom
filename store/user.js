@@ -8,6 +8,7 @@ export const mutations = {
     state.account = account
     state.isLoggedIn = true
     socket.open()
+    socket.emit('userLogIn', { account })
   },
   logOut(state) {
     state.isLoggedIn = false
