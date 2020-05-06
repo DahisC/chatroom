@@ -4,9 +4,10 @@ export const state = () => ({
 })
 
 export const mutations = {
-  logIn(state, { account }) {
+  logIn(state, { account, socket }) {
     state.account = account
     state.isLoggedIn = true
+    socket.open()
   },
   logOut(state) {
     state.isLoggedIn = false

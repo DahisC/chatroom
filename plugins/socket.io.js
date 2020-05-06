@@ -3,7 +3,9 @@ import io from 'socket.io-client'
 import VueSocketIOExt from 'vue-socket.io-extended'
 
 // const socket = io(window.location.origin)
-const socket = io.connect('/chatroom')
+const socket = io(window.location.origin, {
+  autoConnect: false
+})
 
 export default ({ store }) => {
   Vue.use(VueSocketIOExt, socket, { store })

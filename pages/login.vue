@@ -55,13 +55,13 @@ export default {
   methods: {
     async logIn() {
       const vm = this
+      const socket = vm.$socket.client
       const account = vm.inputAccount
       try {
         vm.isLogging = true
         await vm.$axios.post('/login', { account })
         vm.isErrored = false
-        this.$store.commit('user/logIn', { account })
-        console.log(vm.$store.state.user)
+        this.$store.commit('user/logIn', { account, socket }) // 在 Vuex 中控制 socket 的連接狀態
         this.$router.push({ path: '/chatroom' })
       } catch (err) {
         vm.isErrored = true
