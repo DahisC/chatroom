@@ -16,7 +16,7 @@
       >
         <b-img
           src="../assets/icons/paper-plane.svg"
-          :style="{ height: 'inherit', padding: '10px' }"
+          :style="{ height: 'inherit', padding: '10px', cursor: 'pointer' }"
           @click="createMessage"
         />
         <!-- <b-spinner small type="grow" variant="color2"></b-spinner> -->
@@ -34,17 +34,13 @@ export default {
   },
   methods: {
     createMessage() {
-      this.$store.dispatch('messages/createMessage', {
-        type: 'CHAT',
-        text: this.inputMessage
+      const vm = this
+      const socket = this.$socket.client
+      socket.emit('/messages#create', {
+        message: { type: 'CHAT', text: vm.inputMessage }
       })
-      this.inputMessage = ''
+      vm.inputMessage = ''
     }
   }
-  // computed: {
-  //   trimmedInputMessage() {
-  //     return inputMessage.trim()
-  //   }
-  // }
 }
 </script>

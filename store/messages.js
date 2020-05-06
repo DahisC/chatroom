@@ -4,6 +4,7 @@ export const state = () => ({
 
 export const mutations = {
   pushMessage(state, { message }) {
+    console.log(2)
     state.messages.push(message)
   }
 }
@@ -16,18 +17,19 @@ export const actions = {
   // 使用者登入
   socket_userLogIn({ commit }, { account }) {
     commit('pushMessage', {
-      message: { type: 'SYSTEM', text: `－ ${account} 已連線 －` }
+      message: { type: 'LOGIN', text: `－ ${account} 已連線 －` }
     })
   },
 
   socket_userLogOut({ commit }, { account }) {
     commit('pushMessage', {
-      message: { type: 'SYSTEM', text: `－ ${account} 已離線 －` }
+      message: { type: 'LOGOUT', text: `－ ${account} 已離線 －` }
     })
   },
 
   // 推播訊息
   socket_pushMessage({ commit }, { message }) {
+    console.log(1)
     commit('pushMessage', { message })
   }
 }

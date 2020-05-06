@@ -1,35 +1,30 @@
 <template>
   <b-col id="toolbar">
-    <b-icon icon="image" scale="0.75"></b-icon>
-    <b-icon icon="folder-plus" scale="0.75"></b-icon>
+    <!-- <b-icon icon="image" scale="0.75"></b-icon>
+    <b-icon icon="folder-plus" scale="0.75"></b-icon>-->
+    <b-img height="30px" src="../assets/icons/emoji-icon.svg" id="popover-target-1" />
+    <b-img height="25px" src="../assets/icons/addFile-icon.svg" />
+    <b-img height="25px" src="../assets/icons/addImage-icon.svg" />
+    <!--  -->
+    <b-popover target="popover-target-1" triggers="hover" placement="top">
+      <template v-slot:title>😀</template>
+      <p>😀</p>
+    </b-popover>
   </b-col>
 </template>
 
 <script>
-import {
-  BIcon,
-  BIconImage,
-  BIconFileEarmarkPlus,
-  BIconFolderPlus
-} from 'bootstrap-vue'
 export default {
-  components: {
-    BIcon,
-    BIconImage,
-    BIconFileEarmarkPlus,
-    BIconFolderPlus
-  }
+  components: {}
 }
 </script>
 
 <style scoped>
-#toolbar > svg {
-  width: auto;
-  height: 100%;
-  color: var(--color1);
+#toolbar > img {
+  margin: 0 10px;
 }
 
-#toolbar > svg:hover {
-  color: var(--color2);
+#toolbar > img:hover {
+  opacity: 0.5;
 }
 </style>
