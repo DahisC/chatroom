@@ -46,7 +46,7 @@ export default {
       console.log(e.scrollHeight)
       console.log(e.clientHeight)
 
-      if (e.scrollTop + e.clientHeight === e.scrollHeight) {
+      if (e.scrollTop + e.clientHeight >= e.scrollHeight) {
         this.isSticky = true
       } else {
         this.isSticky = false
