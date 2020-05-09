@@ -1,7 +1,12 @@
 <template>
   <div
     class="message"
-    :class="{ 'chat_message': message.type === 'CHAT','login_message': message.type === 'LOGIN', 'logout_message': message.type === 'LOGOUT', 'sendFromMyself': message.socketID === socketID }"
+    :class="{
+      chat_message: message.type === 'CHAT',
+      login_message: message.type === 'LOGIN',
+      logout_message: message.type === 'LOGOUT',
+      sendFromMyself: message.socketID === socketID
+    }"
   >
     <template v-if="message.type === 'CHAT'">
       <template v-if="message.account !== account">
@@ -42,6 +47,7 @@ div.message {
   margin: 10px 0px;
   display: flex;
   flex-direction: row;
+  word-break: break-all;
 }
 
 div.chat_message.sendFromMyself {
