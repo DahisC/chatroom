@@ -42,6 +42,10 @@ export default {
   methods: {
     onScroll() {
       const e = this.$el
+      console.log(e.scrollTop)
+      console.log(e.scrollHeight)
+      console.log(e.clientHeight)
+
       if (e.scrollTop + e.clientHeight === e.scrollHeight) {
         this.isSticky = true
       } else {
