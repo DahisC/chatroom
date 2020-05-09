@@ -7,6 +7,8 @@ exports.global = {
 }
 
 exports.routes = io => {
+  const gv = this.global // gv = global variables
+
   // socket API
 
   io.on('connection', socket => {
@@ -14,11 +16,15 @@ exports.routes = io => {
 
     socket.on('userLogIn', ({ account }) => {
       socket.account = account
-      io.emit('userLogIn', { account })
+      io.emit('userLogIn', { account, onlineUsers: gv.onlineUsers })
     })
 
     socket.on('disconnect', () => {
-      io.emit('userLogOut', { account: socket.alias })
+      gv.onlineUsers = gv.onlineUsers.filter(u => u !== socket.account)
+      io.emit('userLogOut', {
+        account: socket.account,
+        onlineUsers: gv.onlineUsers
+      })
     })
 
     socket.on('/messages#create', ({ message }) => {

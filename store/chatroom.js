@@ -1,11 +1,18 @@
 export const state = () => ({
-  messages: []
+  inputMessage: '',
+  messages: [],
+  onlineUsers: []
 })
 
 export const mutations = {
   pushMessage(state, { message }) {
-    console.log(2)
     state.messages.push(message)
+  },
+  updateOnlineUsers(state, { onlineUsers }) {
+    state.onlineUsers = onlineUsers
+  },
+  inputMessage(state, { text = state.inputMessage, emoji = '' }) {
+    state.inputMessage = text + emoji
   }
 }
 
@@ -15,21 +22,22 @@ export const actions = {
     const res = await this.$axios.post('/messages', { message: { type, text } })
   },
   // 使用者登入
-  socket_userLogIn({ commit }, { account }) {
+  socket_userLogIn({ commit }, { account, onlineUsers }) {
     commit('pushMessage', {
       message: { type: 'LOGIN', text: `－ ${account} 已連線 －` }
     })
+    commit('updateOnlineUsers', { onlineUsers })
   },
 
-  socket_userLogOut({ commit }, { account }) {
+  socket_userLogOut({ commit }, { account, onlineUsers }) {
     commit('pushMessage', {
       message: { type: 'LOGOUT', text: `－ ${account} 已離線 －` }
     })
+    commit('updateOnlineUsers', { onlineUsers })
   },
 
   // 推播訊息
   socket_pushMessage({ commit }, { message }) {
-    console.log(1)
     commit('pushMessage', { message })
   }
 }

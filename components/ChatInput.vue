@@ -1,7 +1,12 @@
 <template>
   <b-col>
     <div :style="{ position: 'relative' }">
-      <b-form-input v-model="inputMessage" @keyup.enter="createMessage" placeholder="說點什麼吧？" />
+      <b-form-input
+        id="inputMessage"
+        v-model="inputMessage"
+        @keyup.enter="createMessage"
+        placeholder="說點什麼吧？"
+      />
       <span
         :style="{
           position: 'absolute',
@@ -27,11 +32,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      inputMessage: ''
-    }
-  },
+  // data() {
+  //   return {
+  //     inputMessage: ''
+  //   }
+  // },
   methods: {
     createMessage() {
       const vm = this
@@ -40,6 +45,16 @@ export default {
         message: { type: 'CHAT', text: vm.inputMessage }
       })
       vm.inputMessage = ''
+    }
+  },
+  computed: {
+    inputMessage: {
+      get() {
+        return this.$store.state.chatroom.inputMessage
+      },
+      set(text) {
+        this.$store.commit('chatroom/inputMessage', { text })
+      }
     }
   }
 }

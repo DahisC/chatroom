@@ -15,6 +15,10 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: Microsoft JhengHei;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

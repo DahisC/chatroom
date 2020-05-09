@@ -2,7 +2,7 @@
   <div>
     <Navbar v-on:getNavbarHeight="getNavbarHeight" />
     <b-container id="app" :style="{ height: `calc(100vh - ${navbarHeight}px)` }">
-      <b-row :style="{ height: '85%' }">
+      <b-row :style="{ height: '85%' }" class="p-1">
         <Chatroom />
       </b-row>
       <b-row :style="{ height: '5%' }">
