@@ -5,6 +5,7 @@
         id="inputMessage"
         v-model="inputMessage"
         @keyup.enter="createMessage"
+        @paste="onPaste"
         placeholder="說點什麼吧？"
       />
       <span
@@ -45,6 +46,20 @@ export default {
         message: { type: 'CHAT', text: vm.inputMessage }
       })
       vm.inputMessage = ''
+    },
+    async onPaste(e) {
+      try {
+        let res = await navigator.clipboard.read()
+        console.log(res)
+        let tt = await res[0].getType('image/png')
+        console.log(tt)
+        console.log(URL.createObjectURL(tt))
+      } catch (err) {
+        console.error(err)
+      }
+      console.log('pasted!')
+
+      // console.log(res)
     }
   },
   computed: {

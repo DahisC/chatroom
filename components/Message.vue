@@ -2,23 +2,38 @@
   <div
     class="message"
     :class="{
-      chat_message: message.type === 'CHAT',
+      chat_message: message.type === 'CHAT' || message.type === 'IMAGE',
       login_message: message.type === 'LOGIN',
       logout_message: message.type === 'LOGOUT',
       sendFromMyself: message.socketID === socketID
     }"
   >
+    <!-- CHAT -->
     <template v-if="message.type === 'CHAT'">
       <template v-if="message.account !== account">
-        <b>{{ message.account }}</b>
+        <b :style="{ wordBreak: 'keep-all' }">{{ message.account }}</b>
         <span :style="{ opacity: 0.2 }">｜</span>
       </template>
       {{ message.text }}
     </template>
+    <!-- IMAGE -->
+    <template v-if="message.type === 'IMAGE'">
+      <template v-if="message.account !== account">
+        <b :style="{ wordBreak: 'keep-all' }">{{ message.account }}</b>
+        <span :style="{ opacity: 0.2 }">｜</span>
+      </template>
+      <b-img
+        :src="message.image.base64"
+        :style="{ width: '200px', cursor: 'pointer' }"
+        @click="debugBase64(message.image.base64)"
+      />
+    </template>
+    <!-- LOGIN -->
     <template v-if="message.type === 'LOGIN'">
       <b-img height="30px" src="../assets/icons/anonymous-icon.svg" />
       {{ message.text }}
     </template>
+    <!-- LOGOUT -->
     <template v-if="message.type === 'LOGOUT'">
       <b-img height="30px" src="../assets/icons/anonymous-icon.svg" />
       {{ message.text }}
@@ -35,6 +50,19 @@ export default {
     },
     account() {
       return this.$store.state.user.account
+    }
+  },
+  methods: {
+    debugBase64(base64URL) {
+      // Error: Not allowed to navigate top frame to data URL
+      // 解決無法在 a tag 中連結 base64 的問題
+      // https://ourcodeworld.com/articles/read/682/what-does-the-not-allowed-to-navigate-top-frame-to-data-url-javascript-exception-means-in-google-chrome
+      const win = window.open()
+      win.document.write(
+        '<iframe src="' +
+          base64URL +
+          '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+      )
     }
   }
 }

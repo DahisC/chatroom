@@ -3,17 +3,19 @@
     <!-- <b-icon icon="image" scale="0.75"></b-icon>
     <b-icon icon="folder-plus" scale="0.75"></b-icon>-->
     <Emoji />
+    <UploadImage />
     <b-img height="25px" src="../assets/icons/addFile-icon.svg" />
-    <b-img height="25px" src="../assets/icons/addImage-icon.svg" />
+
     <!--  -->
   </b-col>
 </template>
 
 <script>
 import Emoji from '~/components/Emoji'
+import UploadImage from '~/components/UploadImage'
 
 export default {
-  components: { Emoji }
+  components: { Emoji, UploadImage }
 }
 </script>
 
