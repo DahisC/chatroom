@@ -27,7 +27,7 @@
         </b-row>
         <b-row align-h="center" align-v="center">
           <b-col cols="10" class="text-center">
-            <BubbleBtn text="開始聊天" :clickEvent="logIn" />
+            <BubbleBtn text="開始聊天" :clickEvent="logIn" :disabled="isNameless" />
           </b-col>
         </b-row>
       </b-container>
@@ -68,6 +68,11 @@ export default {
       } finally {
         vm.isLogging = false
       }
+    }
+  },
+  computed: {
+    isNameless() {
+      return this.inputAccount.trim() === ''
     }
   }
 }
