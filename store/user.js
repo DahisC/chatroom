@@ -11,6 +11,7 @@ export const mutations = {
     socket.emit('userLogIn', { account })
   },
   logOut(state) {
+    state.account = ''
     state.isLoggedIn = false
   }
 }

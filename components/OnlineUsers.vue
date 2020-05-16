@@ -1,6 +1,7 @@
 <template v-slot:button-content>
   <b-nav-item-dropdown right no-caret>
-    <!-- Using 'button-content' slot -->
+    <b-dd-header class="text-center">線上的使用者</b-dd-header>
+    <b-dd-divider />
     <template v-slot:button-content>
       <b-icon icon="person-lines-fill" class="align-bottom"></b-icon>
       <b-badge variant="color5">

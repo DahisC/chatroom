@@ -6,7 +6,7 @@
           <b-col cols="10" sm="6">
             <!-- <b-form-input v-model="inputAccount" placeholder="暱稱" size="lg" :state="false"></b-form-input> -->
             <div role="group">
-              <label for="input_alias">暱稱</label>
+              <label for="input_alias" :style="{ color: 'var(--color1)' }">暱稱</label>
               <b-form-input
                 id="input_alias"
                 size="lg"
@@ -14,6 +14,7 @@
                 :state="isErrored == null ? null : !isErrored"
                 placeholder="陸小曼"
                 trim
+                autocomplete="off"
               ></b-form-input>
 
               <!-- This will only be shown if the preceding input has an invalid state -->
@@ -40,7 +41,6 @@ import BubbleBtn from '~/components/BubbleBtn'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'test',
   components: {
     BubbleDiv,
     BubbleBtn

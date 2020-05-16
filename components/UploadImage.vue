@@ -1,17 +1,7 @@
 <template>
   <Fragment>
-    <b-img
-      height="25px"
-      src="../assets/icons/addImage-icon.svg"
-      @click="isModalVisible = true"
-    />
-    <input
-      id="uploadImage"
-      type="file"
-      hidden
-      @change="onUploadImage"
-      accept="image/*"
-    />
+    <b-img height="25px" src="../assets/icons/addImage-icon.svg" @click="isModalVisible = true" />
+    <input id="uploadImage" type="file" hidden @change="onUploadImage" accept="image/*" />
     <b-modal
       title="上傳圖片"
       :visible="isModalVisible"
@@ -28,16 +18,12 @@
       footer-bg-variant="color4"
       footer-text-variant="color1"
     >
-      <b-aspect
-        aspect="1:1"
-        :style="{ border: '5px dashed var(--color1)', borderRadius: '5px' }"
-      >
+      <b-aspect aspect="1:1" :style="{ border: '5px dashed var(--color1)', borderRadius: '5px' }">
         <div
           class="d-flex justify-content-center align-items-center flex-column h-100 position-relative"
           @click="onClick"
         >
           <template v-if="Object.keys(previewImage).length !== 0">
-            <b-img :src="previewImage.base64" class="mw-100 mh-100" />
             <div
               class="position-absolute w-100 p-2 text-center"
               :style="{
@@ -47,18 +33,18 @@
                 color: 'var(--color4)',
                 opacity: 0.75
               }"
-            >
-              {{ previewImage.name }} ({{ previewImage.type }})
-            </div>
+            >{{ previewImage.name }} ({{ previewImage.type }})</div>
+            <b-img v-if="isUploadImage" :src="previewImage.base64" class="mw-100 mh-100" />
+            <span v-else>格式錯誤，請選擇其它圖片</span>
           </template>
           <template v-else>
             <span class="my-3">選擇一張圖片</span>
-            <span class="my-3">或者拖曳圖片到此區域內</span>
+            <!-- <span class="my-3">或者拖曳圖片到此區域內</span> -->
           </template>
         </div>
       </b-aspect>
       <template v-slot:modal-footer>
-        <b-button variant="color1" @click="uploadImage">傳送</b-button>
+        <b-button variant="color1" @click="uploadImage" :disabled="!isUploadImage">傳送</b-button>
       </template>
     </b-modal>
   </Fragment>
@@ -105,6 +91,12 @@ export default {
       socket.emit('/messages#create', {
         message: { type: 'IMAGE', image: this.previewImage }
       })
+      this.isModalVisible = false
+    }
+  },
+  computed: {
+    isUploadImage() {
+      return /^image.*/.test(this.previewImage.type)
     }
   }
 }

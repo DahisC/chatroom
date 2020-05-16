@@ -5,8 +5,9 @@
         id="inputMessage"
         v-model="inputMessage"
         @keyup.enter="createMessage"
-        @paste="onPaste"
-        placeholder="說點什麼吧？"
+        placeholder="在紙飛機上放點東西"
+        autocomplete="off"
+        trim
       />
       <span
         :style="{
@@ -21,6 +22,8 @@
         }"
       >
         <b-img
+          id="paper_plane"
+          :class="{ 'readyToTakeOff': !isAllSpace }"
           src="../assets/icons/paper-plane.svg"
           :style="{ height: 'inherit', padding: '10px', cursor: 'pointer' }"
           @click="createMessage"
@@ -33,34 +36,24 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     inputMessage: ''
-  //   }
-  // },
   methods: {
     createMessage() {
+      if (this.isAllSpace) return
       const vm = this
       const socket = this.$socket.client
       socket.emit('/messages#create', {
         message: { type: 'CHAT', text: vm.inputMessage }
       })
       vm.inputMessage = ''
-    },
-    async onPaste(e) {
-      try {
-        let res = await navigator.clipboard.read()
-        console.log(res)
-        let tt = await res[0].getType('image/png')
-        console.log(tt)
-        console.log(URL.createObjectURL(tt))
-      } catch (err) {
-        console.error(err)
-      }
-      console.log('pasted!')
-
-      // console.log(res)
     }
+    // async onPaste(e) {
+    //   try {
+    //     let res = await navigator.clipboard.read()
+    //     let tt = await res[0].getType('image/png')
+    //   } catch (err) {
+    //     console.error(err)
+    //   }
+    // }
   },
   computed: {
     inputMessage: {
@@ -70,7 +63,21 @@ export default {
       set(text) {
         this.$store.commit('chatroom/inputMessage', { text })
       }
+    },
+    isAllSpace() {
+      return this.inputMessage.trim() === ''
     }
   }
 }
 </script>
+
+<style scoped>
+#paper_plane {
+  transition: opacity 0.5s;
+  opacity: 0.3;
+}
+
+#paper_plane.readyToTakeOff {
+  opacity: 1;
+}
+</style>

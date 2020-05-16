@@ -1,18 +1,34 @@
 <template>
-  <div>
-    <div
-      v-for="(bubble, i) of bubbleMax"
-      :key="i"
-      :id="`floating${i + 1}`"
-      class="bubble"
-    ></div>
+  <div class="position-relative">
+    <div v-for="(bubble, i) of bubbleMax" :key="i" :id="`floating${i + 1}`" class="bubble"></div>
     <!-- <div class="bubble"></div> -->
     <slot></slot>
+    <div class="position-absolute mb-1 mr-2" :style="{ right: 0, bottom: 0 }">
+      <span :style="{ color: 'var(--color1)' }">
+        <BIconCodeSlash class="mr-2" />Dahis
+        <a href="https://github.com/DahisC/chatroom" target="_blank">
+          <small>原始碼</small>
+        </a>
+      </span>
+      <span :style="{ color: 'var(--color1)' }">
+        <BIconBrush class="mr-2" />fish
+        <a href="https://www.behance.net/gallery/84720235/THE-F2E-7-UI" target="_blank">
+          <small>設計稿</small>
+        </a>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
+import { BIcon, BIconBrush, BIconCodeSlash } from 'bootstrap-vue'
+
 export default {
+  components: {
+    BIcon,
+    BIconBrush,
+    BIconCodeSlash
+  },
   data() {
     return {
       bubbles: [],
@@ -112,6 +128,7 @@ export default {
 div {
   background-color: #c7daf2;
   position: relative;
+  overflow-x: hidden;
 }
 
 div.bubble {

@@ -4,8 +4,7 @@
     <b-icon icon="folder-plus" scale="0.75"></b-icon>-->
     <Emoji />
     <UploadImage />
-    <b-img height="25px" src="../assets/icons/addFile-icon.svg" />
-
+    <!-- <b-img height="25px" src="../assets/icons/addFile-icon.svg" /> -->
     <!--  -->
   </b-col>
 </template>
